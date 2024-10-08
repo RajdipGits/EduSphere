@@ -1,0 +1,430 @@
+<?php include("../server/cntregirtration.php");?>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Student Registration Form</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fw/css/all.min.css">
+    <!-- <script src="/EduSphere/assets/js/angular.min.js"></script> -->
+    <script src="../EduSphere/assets/bootstrap 4/js/validation.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            --sb-track-color: black;
+            --sb-thumb-color: #d2d4d32f;
+            --sb-size: 11px;
+        }
+
+        *::-webkit-scrollbar {
+            width: var(--sb-size);
+        }
+
+        *::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 5px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body,
+        html {
+            height: 100%;
+            position: relative;
+            background: linear-gradient(90deg, rgba(14, 14, 14, 1) 0%, rgba(240, 148, 0, 1) 0%, rgba(252, 91, 0, 1) 100%);
+
+        }
+
+        .navbar-custom {
+            background-color: transparent !important;
+            z-index: 1;
+        }
+
+        .navbar-custom {
+            background-color: #343a40;
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #f8f9fa;
+        }
+
+        .navbar-nav.mx-auto {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item-custom .nav-link {
+            color: black;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 0px 10px;
+            font-weight: 600;
+            transition: all .3s ease-in-out;
+        }
+
+        .navbar-nav .nav-item-custom .nav-link:hover,
+        .navbar-nav .nav-item-custom .nav-link.active {
+            color: black;
+            /* text-decoration: underline; */
+            transform: scale(1.1);
+        }
+
+        .nav-item-last .nav-link {
+            background-color: white;
+            color: black !important;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            transition: all .3s ease-in-out;
+        }
+
+        .nav-item-last .nav-link:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                flex-direction: row;
+                justify-content: flex-start;
+                text-align: left;
+            }
+
+            .nav-item {
+                margin: 5px;
+                width: auto;
+                display: flex;
+            }
+
+            .nav-item-custom .nav-link,
+            .nav-item-last .nav-link {
+                padding: 10px;
+                width: auto;
+                text-align: left;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+
+            .nav-item-last {
+                margin-top: 0;
+                position: absolute;
+                right: 9%;
+                top: 50%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .navbar-nav {
+                align-items: center;
+                width: 100%;
+            }
+
+            .nav-item-last {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+                order: -1;
+                position: relative;
+                margin-left: 150px;
+            }
+
+            .navbar-nav.mx-auto {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                width: 100%;
+                order: 1;
+            }
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 0.25em rgba(67, 71, 85, .27), 0 0.25em 1em rgba(90, 125, 188, .05);
+            padding: 40px;
+            width: 90%;
+            max-width: 900px;
+            margin: 60px auto;
+
+        }
+
+        form {
+            position: relative;
+            /* top:-90px; */
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="personCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">EduSphere</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item nav-item-custom">
+                        <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item nav-item-custom">
+                        <a class="nav-link " href="../student/index.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item nav-item-custom">
+                        <a class="nav-link " href="#">About Us</a>
+                    </li>
+                </ul>
+
+                <!-- Right-aligned Admin Login link -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item nav-item-last">
+                        <a class="nav-link" href="../index/adminlogin.html">Admin login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form method="post" action="server/cntregirtration.php" enctype="multipart/form-data">
+        <div class="container" ng-init="trainingview()">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center"><u>REGISTRATION FORM</u></h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Name of Candidate*</label>
+                        <input type="text" class="form-control" name="name" style="text-transform: uppercase;" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Roll Number*</label>
+                        <input type="tel" class="form-control" name="roll_number" onkeypress="return isNumber(event)"
+                            maxlength="10" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Registration Number*</label>
+                        <input type="tel" class="form-control" name="registration_number" pattern="[0-9]{6}"
+                            maxlength="6" oninput="this.value = this.value.slice(0, 6)" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Father's Name*</label>
+                        <input type="text" class="form-control" name="father_name" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Mother's Name*</label>
+                        <input type="text" class="form-control" name="mother_name" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Department Name*</label>
+                        <select class="form-control" name="department_name" ng-model="tname" required
+                            ng-change="trainingdata()">
+                            <option ng-repeat="x in cdata" value="">Select Department</option>
+                            <option ng-repeat="x in cdata" value="Computer Science & Technology">Computer Science &
+                                Technology</option>
+                            <option ng-repeat="x in cdata" value="Electrical Engineering">Electrical Engineering
+                            </option>
+                            <option ng-repeat="x in cdata" value="Civil Engineering">Civil Engineering</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Year of Student*</label>
+                        <select class="form-control" name="year" ng-model="year" ng-change="trainingview()" required>
+                            <option value="">Select</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Admission Fees</label>
+                        <select class="form-control" name="fees" ng-model="fees" readonly>
+                            <option value="3500">3500</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Institute Name*</label>
+                        <input type="text" class="form-control" name="institute_name" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Date of Birth*</label>
+                        <input type="date" class="form-control" name="dob" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Gender*</label>
+                        <select class="form-control" name="gender" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Contact No*</label>
+                        <input type="tel" class="form-control" name="contact_no" onkeypress="return isNumber(event)"
+                            maxlength="10" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="font-weight-bold">WhatsApp No*</label>
+                        <input type="tel" class="form-control" name="whatsapp_no" onkeypress="return isNumber(event)"
+                            maxlength="10" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Email*</label>
+                        <input type="email" class="form-control" name="email" style="text-transform: lowercase;"
+                            required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Address*</label>
+                        <textarea class="form-control" name="address" rows="5" style="text-transform: capitalize;"
+                            required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Upload Aadhaar*(Under 50kb)</label>
+                        <input type="file" name="aadhaar_img" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Last Marksheet(Under 50kb)</label>
+                        <input type="file" name="marksheet_img" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Upload Passport Size Photo*</label>
+                        <input type="file" name="img" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Upload Signature*(Under 50kb)</label>
+                        <input type="file" name="sig" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Payment Mode*</label>
+                        <select class="form-control" name="pay" ng-model="pay" required ng-change="checkpay()">
+                            <option value="">Select Payment Mode</option>
+                            <option value="Online">Online</option>
+                            <!-- <option value="Offline">Offline</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6" ng-show="upi">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Upload Screenshot*(Under 50kb)</label>
+                        <input type="file" name="receipt" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="upi">
+                <div class="col-md-12 text-center">
+                    <img src="/EduSphere/assets/img/qrcode.jpg" width="300" height="300">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-success" id="myBtn" name="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const paySelect = document.querySelector('select[name="pay"]');
+            const upiFields = document.querySelectorAll('[ng-show="upi"]');
+
+            paySelect.addEventListener('change', function () {
+                if (this.value === 'Online') {
+                    upiFields.forEach(field => field.style.display = 'block');
+                } else {
+                    upiFields.forEach(field => field.style.display = 'none');
+                }
+            });
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

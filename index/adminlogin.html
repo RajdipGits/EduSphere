@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Students Management System</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../assets/bootstrap 4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/fw/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+      --sb-track-color: transparent;
+      --sb-thumb-color: #d2d4d32f;
+      --sb-size: 11px;
+    }
+
+    *::-webkit-scrollbar {
+      width: var(--sb-size);
+    }
+
+    *::-webkit-scrollbar-track {
+      background: var(--sb-track-color);
+      border-radius: 5px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: var(--sb-thumb-color);
+      border-radius: 5px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .navbar-custom {
+      background-color: transparent !important;
+      z-index: 1;
+    }
+
+    .navbar-custom {
+      background-color: #343a40;
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #f8f9fa;
+    }
+
+    .navbar-nav.mx-auto {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar-nav .nav-item-custom .nav-link {
+      color: black;
+      font-size: 1.1rem;
+      padding: 10px 15px;
+      background-color: white;
+      border-radius: 10px;
+      margin: 0px 10px;
+      font-weight: 600;
+      transition: all .3s ease-in-out;
+    }
+
+    .navbar-nav .nav-item-custom .nav-link:hover,
+    .navbar-nav .nav-item-custom .nav-link.active {
+      color: black;
+      /* text-decoration: underline; */
+      transform: scale(1.1);
+    }
+
+    .nav-item-last .nav-link {
+      background-color: white;
+      color: black !important;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      transition: all .3s ease-in-out;
+    }
+
+    .nav-item-last .nav-link:hover {
+      transform: scale(1.1);
+    }
+
+    body,
+    html {
+      height: 100%;
+      background-color: black;
+      position: relative;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .login-card {
+      border-radius: 15px !important;
+      box-shadow: 0 0 0.25em rgba(67, 71, 85, .27), 0 0.25em 1em rgba(90, 125, 188, .05) !important;
+      box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
+      padding: 3%;
+      width: 100%;
+      max-width: 525px;
+      max-height: 475px;
+      background-color: transparent;
+    }
+
+    .form-text {
+      color: black;
+    }
+
+    .btn {
+      background-color: black;
+      border: none;
+      box-shadow: 0 0 10px rgb(94, 94, 94);
+      border-radius: 10px;
+      transition: all .3s ease-in-out;
+    }
+
+    .btn:hover {
+      background-color: black;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .nav-item {
+        margin: 5px;
+        width: auto;
+        display: flex;
+      }
+
+      .nav-item-custom .nav-link,
+      .nav-item-last .nav-link {
+        padding: 10px;
+        width: auto;
+        text-align: left;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+
+      .nav-item-last {
+        margin-top: 0;
+        position: absolute;
+        right: 9%;
+        top: 50%;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .navbar-nav {
+        align-items: center;
+        width: 100%;
+      }
+
+      .nav-item-last {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        order: -1;
+        position: relative;
+        margin-left: 150px;
+      }
+
+      .navbar-nav.mx-auto {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+        order: 1;
+      }
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .login-card {
+      border-radius: 15px !important;
+      box-shadow: 0 0 0.25em rgba(67, 71, 85, .27), 0 0.25em 1em rgba(90, 125, 188, .05) !important;
+      padding: 3%;
+      width: 100%;
+      max-width: 525px;
+      /* Adjust as needed */
+      max-height: 475px;
+    }
+
+    .main {
+      width: 100%;
+      height: 100vh;
+      border-radius: 5px 5px 450px 5px;
+      background: linear-gradient(90deg, rgba(14, 14, 14, 1) 0%, rgba(240, 148, 0, 1) 0%, rgba(252, 91, 0, 1) 100%);
+      position: absolute;
+      top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Nav bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">EduSphere</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="../student/index.html">Sign Up</a>
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="../index.html?section=third-tab">About Us</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item nav-item-last">
+            <a class="nav-link" href="../index/adminlogin.html">Admin login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- end of nav bar -->
+
+  <div class="main">
+    <div class="login-container">
+      <div class="login-card card">
+        <div class="card-body">
+          <center>
+            <h3 class="card-title" style="font-weight: 600;">Login</h3>
+          </center>
+          <br>
+          <form method="post" action="../server/adminlog.php" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="font-weight-bold">Email</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-graduate"></i></span>
+                </div>
+                <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="font-weight-bold">Password</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+              </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button><br><br>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../script.js"></script>
+</body>
+
+</html>
